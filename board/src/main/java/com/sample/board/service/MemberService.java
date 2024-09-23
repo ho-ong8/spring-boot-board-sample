@@ -63,4 +63,9 @@ public class MemberService {
         }
     }
 
+    // 회원정보 삭제
+    public void delete(Long id) {
+        memberRepository.deleteById(id);
+    }
+
 }
