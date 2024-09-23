@@ -68,4 +68,19 @@ public class MemberService {
         memberRepository.deleteById(id);
     }
 
+    // 회원정보 수정
+    public MemberDTO findByMemberEmail(String memberEmail) {
+        Optional<MemberEntity> member = memberRepository.findByMemberEmail(memberEmail);
+
+        if (member.isPresent()) {
+            return MemberDTO.toMemberDTO(member.get());
+        } else {
+            return null;
+        }
+    }
+
+    public void update(MemberDTO memberDTO) {
+        memberRepository.save(MemberEntity.toUpdateMemberEntity(memberDTO));
+    }
+
 }
