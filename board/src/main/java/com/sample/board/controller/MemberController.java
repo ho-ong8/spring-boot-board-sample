@@ -92,4 +92,10 @@ public class MemberController {
         return "redirect:/member/" + memberDTO.getId();
     }
 
+    // 이메일 중복체크
+    @PostMapping("/check-email")
+    public @ResponseBody String emailCheck(@RequestParam("memberEmail") String memberEmail) {
+        return memberService.emailCheck(memberEmail);
+    }
+
 }

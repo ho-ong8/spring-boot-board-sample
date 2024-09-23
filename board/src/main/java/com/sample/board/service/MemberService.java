@@ -83,4 +83,15 @@ public class MemberService {
         memberRepository.save(MemberEntity.toUpdateMemberEntity(memberDTO));
     }
 
+    // 이메일 중복체크
+    public String emailCheck(String memberEmail) {
+        Optional<MemberEntity> member = memberRepository.findByMemberEmail(memberEmail);
+
+        if (member.isPresent()) {
+            return null;
+        } else {
+            return "ok";
+        }
+    }
+
 }
