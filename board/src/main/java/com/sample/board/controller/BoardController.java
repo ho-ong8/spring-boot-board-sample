@@ -1,7 +1,9 @@
 package com.sample.board.controller;
 
 import com.sample.board.dto.BoardDTO;
+import com.sample.board.dto.CommentDTO;
 import com.sample.board.service.BoardService;
+import com.sample.board.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +20,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final CommentService commentService;
 
     // 게시글 작성
     @GetMapping("/write")
@@ -48,6 +51,10 @@ public class BoardController {
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board", boardDTO);
         model.addAttribute("page", pageable.getPageNumber());
+
+        // 댓글 목록
+        List<CommentDTO> commentDTOList = commentService.findAll(id);
+        model.addAttribute("commentList", commentDTOList);
         return "/board/detail";
     }
 
