@@ -33,6 +33,13 @@ public class BoardEntity extends BaseEntity {
     @Column
     private int boardHits;
 
+    @Column
+    private int fileAttached;
+
+    // 파일 첨부
+    @OneToMany(mappedBy="boardEntity", cascade=CascadeType.REMOVE, orphanRemoval=true, fetch=FetchType.LAZY)
+    private List<BoardFileEntity> boardFileEntityList = new ArrayList<>();
+
     // 댓글
     @OneToMany(mappedBy="boardEntity", cascade=CascadeType.REMOVE, orphanRemoval=true, fetch=FetchType.LAZY)
     private List<CommentEntity> commentEntityList = new ArrayList<>();
@@ -44,6 +51,8 @@ public class BoardEntity extends BaseEntity {
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
         boardEntity.setBoardHits(0);
+        // 파일 미첨부(0)
+        boardEntity.setFileAttached(0);
         return boardEntity;
     }
 
@@ -55,6 +64,18 @@ public class BoardEntity extends BaseEntity {
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
         boardEntity.setBoardHits(boardDTO.getBoardHits());
+        return boardEntity;
+    }
+
+    public static BoardEntity toBoardFileEntity(BoardDTO boardDTO) {
+        BoardEntity boardEntity = new BoardEntity();
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
+        boardEntity.setBoardPassword(boardDTO.getBoardPassword());
+        boardEntity.setBoardTitle(boardDTO.getBoardTitle());
+        boardEntity.setBoardContents(boardDTO.getBoardContents());
+        boardEntity.setBoardHits(0);
+        // 파일 첨부(1)
+        boardEntity.setFileAttached(1);
         return boardEntity;
     }
 

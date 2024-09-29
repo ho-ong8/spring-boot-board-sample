@@ -32,6 +32,21 @@
             <th>contents</th>
             <td th:text="${board.boardContents}"></td>
         </tr>
+
+        <!-- 파일 첨부 -->
+        <tr th:if="${board.fileAttached == 1}">
+            <th style="vertical-align: top;">file</th>
+            <!-- 단일 파일 첨부 -->
+            <!--
+            <td>
+                <img th:src="@{|/upload/${board.storedFileName}|}" alt="" style="max-width: 200px;" />
+            </td>
+            -->
+            <!-- 다중 파일 첨부 -->
+            <td th:each="fileName: ${board.storedFileName}">
+                <img th:src="@{|/upload/${fileName}|}" alt="" style="max-width: 200px;" />
+            </td>
+        </tr>
     </table>
     <button onclick="listFn()">글목록</button>
     <button onclick="updateFn()">글수정</button>

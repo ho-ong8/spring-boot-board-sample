@@ -5,11 +5,17 @@
     <title>Write</title>
 </head>
 <body>
-    <form action="/board/write" method="post">
+    <form action="/board/write" method="post" enctype="multipart/form-data">
         writer: <input type="text" name="boardWriter" placeholder="writer" /><br>
         password: <input type="password" name="boardPassword" placeholder="password" /><br>
         title: <input type="text" name="boardTitle" placeholder="title" /><br>
         contents: <textarea name="boardContents" cols="30" rows="10" placeholder="contents"></textarea><br>
+
+        <!-- 파일 첨부 -->
+        <!-- 단일 파일 첨부 -->
+        <!-- file: <input type="file" name="boardFile" /><br> -->
+        <!-- 다중 파일 첨부 -->
+        file: <input type="file" name="boardFile" multiple /><br>
         <input type="submit" value="글작성" />
     </form>
 </body>
