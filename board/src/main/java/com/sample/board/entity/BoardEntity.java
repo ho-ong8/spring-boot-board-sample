@@ -1,0 +1,43 @@
+package com.sample.board.entity;
+
+import com.sample.board.dto.BoardDTO;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@Table(name="board")
+public class BoardEntity {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(length=30)
+    private String boardWriter;
+
+    @Column(length=30)
+    private String boardPassword;
+
+    @Column(length=50)
+    private String boardTitle;
+
+    @Column(length=500)
+    private String boardContents;
+
+    @Column
+    private int boardHits;
+
+    public static BoardEntity toBoardEntity(BoardDTO boardDTO) {
+        BoardEntity boardEntity = new BoardEntity();
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
+        boardEntity.setBoardPassword(boardDTO.getBoardPassword());
+        boardEntity.setBoardTitle(boardDTO.getBoardTitle());
+        boardEntity.setBoardContents(boardDTO.getBoardContents());
+        boardEntity.setBoardHits(0);
+        return boardEntity;
+    }
+
+}
