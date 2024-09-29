@@ -1,7 +1,6 @@
 package com.sample.board.service;
 
 import com.sample.board.dto.BoardDTO;
-import com.sample.board.dto.MemberDTO;
 import com.sample.board.entity.BoardEntity;
 import com.sample.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -57,6 +56,13 @@ public class BoardService {
     // 게시글 삭제
     public void delete(Long id) {
         boardRepository.deleteById(id);
+    }
+
+    // 게시글 수정
+    public BoardDTO update(BoardDTO boardDTO) {
+        BoardEntity boardEntity = BoardEntity.toUpdateBoardEntity(boardDTO);
+        boardRepository.save(boardEntity);
+        return findById(boardDTO.getId());
     }
 
 }
