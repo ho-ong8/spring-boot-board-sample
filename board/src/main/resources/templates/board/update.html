@@ -15,7 +15,7 @@
         <input type="button" value="글수정" onclick="updateFn()" />
     </form>
 </body>
-<script>
+<script th:inline="javascript">
     const updateFn = () => {
         const password = [[${board.boardPassword}]];
         const inputPassword = document.getElementById("boardPassword").value;

@@ -10,7 +10,7 @@
     <button onclick="updateFn()">정보수정</button>
     <button onclick="logoutFn()">로그아웃</button>
 </body>
-<script>
+<script th:inline="javascript">
     const updateFn = () => {
         location.href = "/member/update";
     }

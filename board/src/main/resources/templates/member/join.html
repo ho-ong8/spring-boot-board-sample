@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Join</title>
@@ -15,7 +15,7 @@
         <input type="submit" value="회원가입" />
     </form>
 </body>
-<script>
+<script th:inline="javascript">
     const checkEmail = () => {
         const email = document.getElementById("memberEmail").value;
         const checkResult = document.getElementById("check-result");

@@ -21,7 +21,7 @@
     </table>
     <button onclick="listFn()">회원목록</button>
 </body>
-<script>
+<script th:inline="javascript">
     const listFn = () => {
         location.href = "/member/";
     }

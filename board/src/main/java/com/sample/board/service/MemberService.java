@@ -30,8 +30,7 @@ public class MemberService {
             MemberEntity memberEntity = memberEmail.get();
 
             if (memberEntity.getMemberPassword().equals(memberDTO.getMemberPassword())) {
-                MemberDTO member = MemberDTO.toMemberDTO(memberEntity);
-                return member;
+                return MemberDTO.toMemberDTO(memberEntity);
             } else {
                 return null;
             }

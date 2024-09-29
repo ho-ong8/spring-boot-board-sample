@@ -4,6 +4,10 @@ import com.sample.board.dto.BoardDTO;
 import com.sample.board.entity.BoardEntity;
 import com.sample.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,6 +67,25 @@ public class BoardService {
         BoardEntity boardEntity = BoardEntity.toUpdateBoardEntity(boardDTO);
         boardRepository.save(boardEntity);
         return findById(boardDTO.getId());
+    }
+
+    // 게시글 페이징
+    public Page<BoardDTO> paging(Pageable pageable) {
+        // 페이지 번호 (0부터 시작)
+        int page = pageable.getPageNumber() - 1;
+        // 페이지 게시글 수
+        int pageLimit = 3;
+
+        // 게시글 목록
+        Page<BoardEntity> boardEntityPage = boardRepository.findAll(
+                PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.DESC, "id")
+        ));
+
+        Page<BoardDTO> boardDTOPage = boardEntityPage.map(board -> new BoardDTO(
+                board.getId(), board.getBoardWriter(), board.getBoardTitle(), board.getBoardHits(), board.getCreatedTime()
+        ));
+
+        return boardDTOPage;
     }
 
 }

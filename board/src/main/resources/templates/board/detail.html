@@ -35,9 +35,10 @@
     <button onclick="updateFn()">글수정</button>
     <button onclick="deleteFn()">글삭제</button>
 </body>
-<script>
+<script th:inline="javascript">
     const listFn = () => {
-        location.href = "/board/";
+        const page = [[${page}]];
+        location.href = "/board/paging?page=" + page;
     }
 
     const updateFn = () => {
