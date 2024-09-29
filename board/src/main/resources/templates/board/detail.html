@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>id</th>
+            <td th:text="${board.id}"></td>
+        </tr>
+        <tr>
+            <th>writer</th>
+            <td th:text="${board.boardWriter}"></td>
+        </tr>
+        <tr>
+            <th>date</th>
+            <td th:text="${board.boardCreatedTime}"></td>
+        </tr>
+        <tr>
+            <th>hits</th>
+            <td th:text="${board.boardHits}"></td>
+        </tr>
+        <tr>
+            <th>title</th>
+            <td th:text="${board.boardTitle}"></td>
+        </tr>
+        <tr>
+            <th>contents</th>
+            <td th:text="${board.boardContents}"></td>
+        </tr>
+    </table>
+    <button onclick="listFn()">글목록</button>
+    <button onclick="updateFn()">글수정</button>
+    <button onclick="deleteFn()">글삭제</button>
+</body>
+<script>
+    const listFn = () => {
+        location.href = "/board/";
+    }
+
+    const updateFn = () => {
+        const id = [[${board.id}]];
+        location.href = "/board/update/" + id;
+    }
+
+    const deleteFn = () => {
+        const id = [[${board.id}]];
+        location.href = "/board/delete/" + id;
+    }
+</script>
+</html>
