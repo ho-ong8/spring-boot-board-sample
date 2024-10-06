@@ -11,23 +11,23 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name="board")
+@Table(name = "board")
 public class BoardEntity extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length=30)
+    @Column(length = 30)
     private String boardWriter;
 
-    @Column(length=30)
+    @Column(length = 30)
     private String boardPassword;
 
-    @Column(length=50)
+    @Column(length = 50)
     private String boardTitle;
 
-    @Column(length=500)
+    @Column(length = 500)
     private String boardContents;
 
     @Column
@@ -37,11 +37,11 @@ public class BoardEntity extends BaseEntity {
     private int fileAttached;
 
     // 파일 첨부
-    @OneToMany(mappedBy="boardEntity", cascade=CascadeType.REMOVE, orphanRemoval=true, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "boardEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardFileEntity> boardFileEntityList = new ArrayList<>();
 
     // 댓글
-    @OneToMany(mappedBy="boardEntity", cascade=CascadeType.REMOVE, orphanRemoval=true, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "boardEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<CommentEntity> commentEntityList = new ArrayList<>();
 
     public static BoardEntity toBoardEntity(BoardDTO boardDTO) {

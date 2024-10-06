@@ -46,7 +46,7 @@ public class BoardController {
     // 게시글 조회
     @GetMapping("/{id}")
     public String findById(@PathVariable Long id,
-                           @PageableDefault(page=1) Pageable pageable,
+                           @PageableDefault(page = 1) Pageable pageable,
                            Model model) {
         boardService.updateHits(id);
         BoardDTO boardDTO = boardService.findById(id);
@@ -76,17 +76,21 @@ public class BoardController {
 
     @PostMapping("/update")
     public String update(@ModelAttribute BoardDTO boardDTO,
-                         @PageableDefault(page=1) Pageable pageable,
+                         @PageableDefault(page = 1) Pageable pageable,
                          Model model) {
         BoardDTO board = boardService.update(boardDTO);
         model.addAttribute("board", board);
         model.addAttribute("page", pageable.getPageNumber());
+
+        // 댓글 목록
+        List<CommentDTO> commentDTOList = commentService.findAll(boardDTO.getId());
+        model.addAttribute("commentList", commentDTOList);
         return "/board/detail";
     }
 
     // 게시글 페이징
     @GetMapping("/paging")
-    public String paging(@PageableDefault(page=1) Pageable pageable,
+    public String paging(@PageableDefault(page = 1) Pageable pageable,
                          Model model) {
         Page<BoardDTO> boardDTOPage = boardService.paging(pageable);
 

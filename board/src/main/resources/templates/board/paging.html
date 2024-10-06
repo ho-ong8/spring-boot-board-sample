@@ -2,9 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>List</title>
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.0/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <h1>Board</h1>
+    <h2>List</h2>
     <table>
         <tr>
             <th>id</th>
@@ -25,12 +33,12 @@
     </table>
 
     <!-- 게시글 페이징 -->
-    <div>
+    <div class="board-paging">
         <a th:href="@{/board/paging(page=1)}">시작</a>
         <a th:href="${boardList.first} ? '#' : @{/board/paging(page=${boardList.number})}">이전</a>
         <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
             <span th:unless="${page == 0}">
-                <span th:if="${page == boardList.number + 1}" th:text="${page}"></span>
+                <span th:if="${page == boardList.number + 1}" th:text="${page}" class="current-page"></span>
                 <span th:unless="${page == boardList.number + 1}">
                     <a th:href="@{/board/paging(page=${page})}" th:text="${page}"></a>
                 </span>
@@ -39,5 +47,13 @@
         <a th:href="${boardList.last} ? '#' : @{/board/paging(page=${boardList.number + 2})}">다음</a>
         <a th:href="@{/board/paging(page=${boardList.totalPages})}">마지막</a>
     </div>
+    <div class="btn-board-detail">
+        <button onclick="writeFn()">글작성</button>
+    </div>
 </body>
+<script th:inline="javascript">
+    const writeFn = () => {
+        location.href = "/board/write";
+    }
+</script>
 </html>

@@ -2,13 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Main</title>
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.0/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <h1>Main</h1>
-    <h2>안녕하세요! <span th:text="${session.member}"></span>님</h2>
-    <button onclick="updateFn()">정보수정</button>
-    <button onclick="logoutFn()">로그아웃</button>
+    <div class="container">
+        <h2>안녕하세요! <span th:text="${session.member}"></span>님</h2>
+        <div class="btn-index">
+            <button onclick="updateFn()">정보수정</button>
+            <button onclick="logoutFn()">로그아웃</button>
+        </div>
+    </div>
 </body>
 <script th:inline="javascript">
     const updateFn = () => {

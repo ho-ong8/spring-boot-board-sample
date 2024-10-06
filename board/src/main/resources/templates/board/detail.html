@@ -2,12 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Detail</title>
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.0/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <table>
+    <h1>Board</h1>
+    <h2>Detail</h2>
+    <table class="board-detail">
         <tr>
             <th>id</th>
             <td th:text="${board.id}"></td>
@@ -48,34 +56,38 @@
             </td>
         </tr>
     </table>
-    <button onclick="listFn()">글목록</button>
-    <button onclick="updateFn()">글수정</button>
-    <button onclick="deleteFn()">글삭제</button>
+    <div class="btn-board-detail">
+        <button onclick="listFn()">글목록</button>
+        <button onclick="updateFn()">글수정</button>
+        <button onclick="deleteFn()">글삭제</button>
+    </div>
 
     <!-- 댓글 -->
-    <div>
-        <!-- 댓글 작성 -->
-        writer: <input type="text" id="commentWriter" placeholder="writer" /><br>
-        contents: <input type="text" id="commentContents" placeholder="contents" /><br>
+    <h3>Comment</h3>
+    <!-- 댓글 작성 -->
+    <div id="comment-write">
+        <input type="text" id="commentWriter" placeholder="writer" /><br>
+        <input type="text" id="commentContents" placeholder="contents" /><br>
         <button onclick="writeFn()">댓글작성</button>
-        <!-- 댓글 목록 -->
-        <div id="comment-list">
-            <table>
-                <tr>
-                    <th>id</th>
-                    <th>writer</th>
-                    <th>contents</th>
-                    <th>date</th>
-                </tr>
-                <tr th:each="comment: ${commentList}">
-                    <td th:text="${comment.id}"></td>
-                    <td th:text="${comment.commentWriter}"></td>
-                    <td th:text="${comment.commentContents}"></td>
-                    <td th:text="${comment.commentCreatedTime}"></td>
-                </tr>
-            </table>
-        </div>
     </div>
+    <!-- 댓글 목록 -->
+    <div id="comment-list">
+        <table>
+            <tr>
+                <th>id</th>
+                <th>writer</th>
+                <th>contents</th>
+                <th>date</th>
+            </tr>
+            <tr th:each="comment: ${commentList}">
+                <td th:text="${comment.id}"></td>
+                <td th:text="${comment.commentWriter}"></td>
+                <td th:text="${comment.commentContents}"></td>
+                <td th:text="${comment.commentCreatedTime}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
 </body>
 <script th:inline="javascript">
     const listFn = () => {

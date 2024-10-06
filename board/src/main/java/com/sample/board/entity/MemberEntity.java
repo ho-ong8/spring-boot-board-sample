@@ -8,20 +8,20 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name="member")
+@Table(name = "member")
 public class MemberEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique=true, length=30)
+    @Column(unique = true, length = 30)
     private String memberEmail;
 
-    @Column(length=30)
+    @Column(length = 30)
     private String memberPassword;
 
-    @Column(length=30)
+    @Column(length = 30)
     private String memberName;
 
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {

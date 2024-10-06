@@ -29,9 +29,9 @@ public class BoardDTO {
     /*
     // 단일 파일 첨부
     private MultipartFile boardFile;
-    // 원본 파일 이름
+    // 파일 이름 (원본)
     private String originalFileName;
-    // 서버 저장 파일 이름
+    // 파일 이름 (서버)
     private String storedFileName;
     // 파일 첨부 여부 (미첨부(0), 첨부(1))
     private int fileAttached;
@@ -39,9 +39,9 @@ public class BoardDTO {
 
     // 다중 파일 첨부
     private List<MultipartFile> boardFile;
-    // 원본 파일 이름
+    // 파일 이름 (원본)
     private List<String> originalFileName;
-    // 서버 저장 파일 이름
+    // 파일 이름 (서버)
     private List<String> storedFileName;
     // 파일 첨부 여부 (미첨부(0), 첨부(1))
     private int fileAttached;

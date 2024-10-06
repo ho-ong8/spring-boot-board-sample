@@ -7,11 +7,11 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name="board_file")
+@Table(name = "board_file")
 public class BoardFileEntity extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -20,8 +20,8 @@ public class BoardFileEntity extends BaseEntity {
     @Column
     private String storedFileName;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="board_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
 
     public static BoardFileEntity toBoardFileEntity(BoardEntity boardEntity, String originalFileName, String storedFileName) {
